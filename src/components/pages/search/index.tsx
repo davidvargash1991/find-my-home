@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 import styles from "./search.module.scss";
+import Filters from "./filters";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import Dropdown, { IDropdownOption } from "components/ui/dropdown";
 import { cities, types, operations, properties } from "data";
@@ -87,7 +88,10 @@ const Search: React.FC<RouteComponentProps> = (props) => {
           </button>
         </div>
         <div className={styles.layout}>
-          <div className={styles.filters}></div>
+          <div className={styles.filters}>
+            <h2 className={styles.title}>Filters</h2>
+            <Filters data={data} />
+          </div>
           <div className={styles.results}>
             <Map className={styles.map} center={position} zoom={10}>
               <TileLayer

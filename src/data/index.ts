@@ -1,3 +1,10 @@
+import apt1_1 from "images/Properties/apartment1-1.jpg";
+import apt1_2 from "images/Properties/apartment1-2.jpg";
+import apt1_3 from "images/Properties/apartment1-3.jpg";
+import apt2_1 from "images/Properties/apartment2-1.jpg";
+import apt2_2 from "images/Properties/apartment2-2.jpg";
+import apt2_3 from "images/Properties/apartment2-3.jpg";
+
 export const cities = [
   { value: "NY", label: "New York", lat: 40.7103, lng: -74.0067 },
   { value: "SF", label: "San Francisco", lat: 37.7774, lng: -122.42 },
@@ -40,12 +47,22 @@ export const properties: IProperty[] = [
     operations: ["BY", "RT"],
     buyPrice: 750000,
     rentPrice: 2500,
-    images: [
-      "https://i.postimg.cc/qMMTq6zb/apartment1-1.jpg",
-      "https://i.postimg.cc/RZWxQr1w/apartment1-2.jpg",
-      "https://i.postimg.cc/FsWQLFS9/apartment1-3.jpg",
-    ],
+    images: [apt1_1, apt1_2, apt1_3],
     lat: 40.72631,
     lng: -73.99575,
+  },
+  {
+    city: "NY",
+    bathrooms: 2,
+    rooms: 4,
+    area: 71.5,
+    parking: true,
+    type: "AP",
+    operations: ["BY"],
+    buyPrice: 1300000,
+    rentPrice: 0,
+    images: [apt2_1, apt2_2, apt2_3],
+    lat: 40.75472,
+    lng: -73.98351,
   },
 ];

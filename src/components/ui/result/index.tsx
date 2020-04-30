@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./result.module.scss";
-import { IProperty, operations, properties } from "data";
+import { IProperty } from "data";
 import Title from "../title";
 
 interface IResultProps {

@@ -1,0 +1,84 @@
+@import "../../../styles/styleguide.scss";
+
+.container {
+  height: 94vh;
+  width: 100vw;
+  background-image: url("../../../images/hero.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  .content {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    position: relative;
+
+    .searchBox {
+      background-color: $white;
+      width: 400px;
+      height: auto;
+      border-radius: 10px;
+      position: absolute;
+      top: 120px;
+      padding: 15px 25px;
+
+      .dropdown {
+        margin-bottom: 30px;
+      }
+
+      .button {
+        height: 40px;
+        width: 100%;
+        font-size: 1.5rem;
+        color: $white;
+        background-color: $orange;
+        border-radius: 5px;
+        padding: 3px 5px;
+        border: none;
+        outline: none;
+        font-weight: 300;
+        border: 1px $orange solid;
+        margin-bottom: 20px;
+
+        &:hover {
+          cursor: pointer;
+          color: $orange;
+          background-color: $white;
+        }
+
+        &:disabled {
+          background-color: $disabled;
+          border: 1px $disabled solid;
+
+          &:hover {
+            color: $white;
+            cursor: default;
+          }
+        }
+      }
+    }
+  }
+}
+
+.author {
+  float: right;
+  font-family: $mukta;
+  font-size: 1.3rem;
+  position: absolute;
+  bottom: -10px;
+  right: 10px;
+  height: 4vh;
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    .content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .searchBox {
+        width: 95%;
+      }
+    }
+  }
+}

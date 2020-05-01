@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route, Redirect, withRouter } from "react-router-dom";
 import Navbar from "./components/ui/nabvar";
-import Home from "./components/pages/home";
-import Search from "./components/pages/search";
+import Home from "./containers/pages/home";
+import Search from "./containers/pages/search";
 
 function App() {
   return (

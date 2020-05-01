@@ -1,0 +1,31 @@
+@import "../../../styles/styleguide.scss";
+
+.filter {
+  border-radius: 5px;
+  border: 1px solid $brown-title;
+  width: 35px;
+  margin: 5px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &:hover {
+    cursor: pointer;
+    background-color: $orange;
+    border: 1px solid $orange;
+    color: $white;
+  }
+
+  &.selected {
+    background-color: $orange;
+    border: 1px solid $orange;
+    color: $white;
+
+    &:hover {
+      background-color: $white;
+      border: 1px solid $brown-title;
+      color: $brown-title;
+    }
+  }
+}

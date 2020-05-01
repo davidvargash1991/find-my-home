@@ -1,23 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import styles from "./filters.module.scss";
+import cx from "classnames";
+import NumbersFilter from "components/ui/numbersFilter";
 import InputRange from "react-input-range";
-import { IProperty } from "data";
+import { IPropertiesState } from "store/properties/reducer";
 
 interface IFiltersProps {
-  data: IProperty[];
+  Properties: IPropertiesState;
+  onChangeBudget: (budget: { min: number; max: number }) => void;
+  onChangeBathrooms: (item: { amount: number; selected: boolean }) => void;
+  onChangeRooms: (item: { amount: number; selected: boolean }) => void;
+  onChangeArea: (budget: { min: number; max: number }) => void;
 }
 
 const Filters: React.FC<IFiltersProps> = (props) => {
-  const numbers = props.data.map((property) => {
-    return property.buyPrice;
-  });
+  const {
+    Properties,
+    onChangeBudget,
+    onChangeBathrooms,
+    onChangeRooms,
+    onChangeArea,
+  } = props;
 
-  const min = Math.min.apply(null, numbers);
-  const max = Math.max.apply(null, numbers);
-
-  const [rangeValue, setRangeValue] = useState({ min: min, max: max });
-
-  const formatLabel = (value: number) => {
+  const formatPrice = (value: number) => {
     if (value < 1000000) {
       const result = Math.trunc(value / 1000);
       return `${result}K`;
@@ -27,20 +32,67 @@ const Filters: React.FC<IFiltersProps> = (props) => {
     }
   };
 
+  const formatArea = (value: number) => {
+    return `${value} m2`;
+  };
+
   const handleRangeChange = (value: any) => {
-    setRangeValue(value);
+    onChangeBudget(value);
+  };
+
+  const handleAreaChange = (value: any) => {
+    onChangeArea(value);
   };
 
   return (
     <div className={styles.container}>
+      <p className={styles.label}>Budget:</p>
       <InputRange
         draggableTrack
-        minValue={min}
-        maxValue={max}
-        value={rangeValue}
+        minValue={Properties.filters.pricesRange.min}
+        maxValue={Properties.filters.pricesRange.max}
+        value={Properties.filters.budget}
         step={10000}
-        formatLabel={formatLabel}
+        formatLabel={formatPrice}
         onChange={handleRangeChange}
+      />
+      {Properties.filters.bathrooms.length > 1 && (
+        <React.Fragment>
+          <p className={cx(styles.label, styles.noMargin)}>Bathrooms:</p>
+          <div className={styles.numericFilterContainer}>
+            {Properties.filters.bathrooms.map((data) => (
+              <NumbersFilter
+                key={`B${data.amount}`}
+                data={data}
+                onChange={onChangeBathrooms}
+              />
+            ))}
+          </div>
+        </React.Fragment>
+      )}
+      {Properties.filters.rooms.length > 1 && (
+        <React.Fragment>
+          <p className={cx(styles.label, styles.noMargin)}>Rooms:</p>
+          <div className={styles.numericFilterContainer}>
+            {Properties.filters.rooms.map((data) => (
+              <NumbersFilter
+                key={`R${data.amount}`}
+                data={data}
+                onChange={onChangeRooms}
+              />
+            ))}
+          </div>
+        </React.Fragment>
+      )}
+      <p className={styles.label}>Area:</p>
+      <InputRange
+        draggableTrack
+        minValue={Properties.filters.areaRange.min}
+        maxValue={Properties.filters.areaRange.max}
+        value={Properties.filters.area}
+        step={1}
+        formatLabel={formatArea}
+        onChange={handleAreaChange}
       />
     </div>
   );

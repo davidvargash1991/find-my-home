@@ -5,6 +5,13 @@ import apt2_1 from "images/Properties/apartment2-1.jpg";
 import apt2_2 from "images/Properties/apartment2-2.jpg";
 import apt2_3 from "images/Properties/apartment2-3.jpg";
 
+export interface ICity {
+  value: string;
+  label: string;
+  lat: number;
+  lng: number;
+}
+
 export const cities = [
   { value: "NY", label: "New York", lat: 40.7103, lng: -74.0067 },
   { value: "SF", label: "San Francisco", lat: 37.7774, lng: -122.42 },
@@ -41,7 +48,7 @@ export const properties: IProperty[] = [
     city: "NY",
     bathrooms: 2,
     rooms: 3,
-    area: 51.5,
+    area: 51,
     parking: true,
     type: "AP",
     operations: ["BY", "RT"],
@@ -55,7 +62,7 @@ export const properties: IProperty[] = [
     city: "NY",
     bathrooms: 2,
     rooms: 4,
-    area: 71.5,
+    area: 71,
     parking: true,
     type: "AP",
     operations: ["BY"],

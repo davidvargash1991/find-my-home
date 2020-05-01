@@ -6,7 +6,15 @@ import Title from "components/ui/title";
 import Dropdown, { IDropdownOption } from "components/ui/dropdown";
 import { cities, types, operations } from "data";
 
-const Home: React.FC<RouteComponentProps> = (props) => {
+interface IHomeProps extends RouteComponentProps {
+  onGetSearchResults: (
+    city: string,
+    propertyType: string,
+    operation: string
+  ) => void;
+}
+
+const Home: React.FC<IHomeProps> = (props) => {
   const [city, setCity] = useState<IDropdownOption | null>(null);
   const [type, setType] = useState<IDropdownOption | null>(null);
   const [operation, setOperation] = useState<IDropdownOption | null>(null);
@@ -17,6 +25,7 @@ const Home: React.FC<RouteComponentProps> = (props) => {
 
   const handleSearchClick = () => {
     if (city && type && operation) {
+      props.onGetSearchResults(city.value, type.value, operation.value);
       props.history.push(
         `/search?city=${city.value}&type=${type.value}&operation=${operation.value}`
       );

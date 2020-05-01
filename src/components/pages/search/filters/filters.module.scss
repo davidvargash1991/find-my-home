@@ -9,7 +9,7 @@
     border-radius: 6px;
     touch-action: none;
     box-sizing: border-box;
-    margin: 0 auto;
+    margin: 0 auto 20px auto;
   }
 
   .input-range__track {
@@ -94,21 +94,20 @@
   width: 100%;
   height: 100%;
 
-  .slider {
-    position: relative;
-    height: 14px;
-    padding: 5px 0;
-    width: 90%;
-    border-radius: 6px;
-    touch-action: none;
-    box-sizing: border-box;
-    margin: 0 auto;
+  .label {
+    font-size: 1.5rem;
+    color: $brown-title;
+    margin: 0 0 20px 10px;
+
+    &.noMargin {
+      margin: 0 0 0 10px;
+    }
   }
 
-  .track {
-    top: 0;
-    bottom: 0;
-    background: "#ddd";
-    border-radius: 999px;
+  .numericFilterContainer {
+    display: grid;
+    grid-template-columns: 40px 40px 40px 40px;
+    width: 90%;
+    margin: 0 auto;
   }
 }

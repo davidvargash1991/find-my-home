@@ -21,6 +21,7 @@ const Result: React.FC<IResultProps> = (props) => {
       </div>
       <div className={styles.content}>
         <Title
+          className={styles.title}
           text={`${props.type} - $${
             props.operation === "BY" ? property.buyPrice : property.rentPrice
           }`}

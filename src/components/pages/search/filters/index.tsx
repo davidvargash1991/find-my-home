@@ -4,6 +4,7 @@ import cx from "classnames";
 import NumbersFilter from "components/ui/numbersFilter";
 import InputRange from "react-input-range";
 import { IPropertiesState } from "store/properties/reducer";
+import Toggle from "react-toggle";
 
 interface IFiltersProps {
   Properties: IPropertiesState;
@@ -11,6 +12,7 @@ interface IFiltersProps {
   onChangeBathrooms: (item: { amount: number; selected: boolean }) => void;
   onChangeRooms: (item: { amount: number; selected: boolean }) => void;
   onChangeArea: (budget: { min: number; max: number }) => void;
+  onChangeParking: (parking: boolean) => void;
 }
 
 const Filters: React.FC<IFiltersProps> = (props) => {
@@ -20,6 +22,7 @@ const Filters: React.FC<IFiltersProps> = (props) => {
     onChangeBathrooms,
     onChangeRooms,
     onChangeArea,
+    onChangeParking,
   } = props;
 
   const formatPrice = (value: number) => {
@@ -42,6 +45,10 @@ const Filters: React.FC<IFiltersProps> = (props) => {
 
   const handleAreaChange = (value: any) => {
     onChangeArea(value);
+  };
+
+  const handleParkingChange = () => {
+    onChangeParking(!Properties.filters.parking);
   };
 
   return (
@@ -94,6 +101,14 @@ const Filters: React.FC<IFiltersProps> = (props) => {
         formatLabel={formatArea}
         onChange={handleAreaChange}
       />
+      <label className={styles.parking}>
+        <Toggle
+          defaultChecked={Properties.filters.parking}
+          icons={false}
+          onChange={handleParkingChange}
+        />
+        <span className={styles.label}>Parking</span>
+      </label>
     </div>
   );
 };

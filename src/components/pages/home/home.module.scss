@@ -72,13 +72,24 @@
 
 @media only screen and (max-width: 767px) {
   .container {
+    min-height: 600px;
     .content {
       display: flex;
       justify-content: center;
-      align-items: center;
       .searchBox {
-        width: 95%;
+        width: 90%;
       }
     }
+  }
+
+  .author {
+    float: right;
+    font-family: $mukta;
+    font-size: 1.3rem;
+    position: absolute;
+    bottom: -30px;
+    right: 10px;
+    height: 4vh;
+    color: $white;
   }
 }

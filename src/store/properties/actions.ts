@@ -33,13 +33,19 @@ interface IChangeArea {
   area: { min: number; max: number };
 }
 
+interface IChangeParking {
+  type: PropertiesActionType.CHANGE_PARKING;
+  parking: boolean;
+}
+
 export type Action =
   | IPropertiesLoading
   | IPropertiesReady
   | IChangeBudget
   | IChangeBathrooms
   | IChangeRooms
-  | IChangeArea;
+  | IChangeArea
+  | IChangeParking;
 
 const propertiesLoading = () => ({
   type: PropertiesActionType.PROPERTIES_LOADING,
@@ -72,6 +78,11 @@ export const changeRooms = (item: { amount: number; selected: boolean }) => ({
 export const changeArea = (area: { min: number; max: number }) => ({
   type: PropertiesActionType.CHANGE_AREA,
   area,
+});
+
+export const changeParking = (parking: boolean) => ({
+  type: PropertiesActionType.CHANGE_PARKING,
+  parking,
 });
 
 function onlyUnique(value: number, index: number, self: number[]) {

@@ -68,3 +68,24 @@
     }
   }
 }
+
+@media only screen and (max-width: 767px) {
+  .title {
+    font-size: 1.7rem;
+  }
+  .container {
+    height: 140px;
+    .imgContainer {
+      height: 100%;
+      .item {
+        height: 100%;
+        img {
+          height: 100%;
+        }
+      }
+    }
+    .content {
+      margin-left: 5px;
+    }
+  }
+}

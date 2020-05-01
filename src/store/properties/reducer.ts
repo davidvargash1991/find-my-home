@@ -55,20 +55,22 @@ const filters = (state: IFilters, action: Action, newData?: any) => {
       return { ...state, rooms: newData };
     case PropertiesActionType.CHANGE_AREA:
       return { ...state, area: action.area };
+    case PropertiesActionType.CHANGE_PARKING:
+      return { ...state, parking: action.parking };
     default:
       return state;
   }
 };
 
 const realEstate = (filters: IFilters) => {
-  // if (filters.operation === "BY") {
+  const priceFilter = filters.operation === "BY" ? "buyPrice" : "rentPrice";
   return properties.filter(
     (property) =>
       property.city === filters.city &&
       property.type === filters.propertyType &&
       property.operations.find((op) => op === filters.operation) &&
-      property.buyPrice >= filters.budget.min &&
-      property.buyPrice <= filters.budget.max &&
+      property[priceFilter] >= filters.budget.min &&
+      property[priceFilter] <= filters.budget.max &&
       filters.bathrooms
         .filter((item) => item.selected)
         .find((item) => item.amount === property.bathrooms) !== undefined &&
@@ -76,26 +78,9 @@ const realEstate = (filters: IFilters) => {
         .filter((item) => item.selected)
         .find((item) => item.amount === property.rooms) !== undefined &&
       property.area >= filters.area.min &&
-      property.area <= filters.area.max
+      property.area <= filters.area.max &&
+      property.parking === filters.parking
   );
-  // } else {
-  //   return properties.filter(
-  //     (property) =>
-  //       property.city === filters.city &&
-  //       property.type === filters.propertyType &&
-  //       property.operations.find((op) => op === filters.operation) &&
-  //       property.rentPrice >= filters.budget.min &&
-  //       property.rentPrice <= filters.budget.max &&
-  //       filters.bathrooms
-  //         .filter((item) => item.selected)
-  //         .find((item) => item.amount === property.bathrooms) !== undefined &&
-  //       filters.rooms
-  //         .filter((item) => item.selected)
-  //         .find((item) => item.amount === property.rooms) !== undefined &&
-  //       property.area >= filters.area.min &&
-  //       property.area <= filters.area.max
-  //   );
-  // }
 };
 
 export const Properties = (state = propertiesInitialState, action: Action) => {
@@ -152,6 +137,14 @@ export const Properties = (state = propertiesInitialState, action: Action) => {
         isLoading: false,
       };
     case PropertiesActionType.CHANGE_AREA:
+      newFilters = filters(state.filters, action);
+      return {
+        ...state,
+        properties: realEstate(newFilters),
+        filters: newFilters,
+        isLoading: false,
+      };
+    case PropertiesActionType.CHANGE_PARKING:
       newFilters = filters(state.filters, action);
       return {
         ...state,

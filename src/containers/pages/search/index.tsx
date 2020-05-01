@@ -7,6 +7,7 @@ import {
   changeBathrooms,
   changeRooms,
   changeArea,
+  changeParking,
 } from "store/properties/actions";
 import Search from "components/pages/search";
 
@@ -29,6 +30,7 @@ function mapDispatchToProps(dispatch: ThunkDispatch<any, any, any>) {
       dispatch(changeRooms(item)),
     onChangeArea: (budget: { min: number; max: number }) =>
       dispatch(changeArea(budget)),
+    onChangeParking: (parking: boolean) => dispatch(changeParking(parking)),
   };
 }
 

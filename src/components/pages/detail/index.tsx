@@ -18,6 +18,7 @@ interface IDetailProps {
 
 const Detail: React.FC<IDetailProps> = ({ id }) => {
   const [showSuccess, setShowSuccess] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const clipboard = new ClipboardJS(`.${styles.copy}`);
 
   clipboard.on("success", function (e) {
@@ -50,6 +51,13 @@ const Detail: React.FC<IDetailProps> = ({ id }) => {
   const dataStyle: React.CSSProperties = {
     gridTemplateColumns: gridCols,
   };
+
+  if (!scrolled) {
+    setTimeout(() => {
+      window.scrollTo(0, 0);
+      setScrolled(true);
+    }, 1000);
+  }
 
   return (
     <div className={styles.container}>

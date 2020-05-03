@@ -53,16 +53,21 @@ const Filters: React.FC<IFiltersProps> = (props) => {
 
   return (
     <div className={styles.container}>
-      <p className={styles.label}>Budget:</p>
-      <InputRange
-        draggableTrack
-        minValue={Properties.filters.pricesRange.min}
-        maxValue={Properties.filters.pricesRange.max}
-        value={Properties.filters.budget}
-        step={10000}
-        formatLabel={formatPrice}
-        onChange={handleRangeChange}
-      />
+      {Properties.filters.pricesRange.min !==
+        Properties.filters.pricesRange.max && (
+        <React.Fragment>
+          <p className={styles.label}>Budget:</p>
+          <InputRange
+            draggableTrack
+            minValue={Properties.filters.pricesRange.min}
+            maxValue={Properties.filters.pricesRange.max}
+            value={Properties.filters.budget}
+            step={10000}
+            formatLabel={formatPrice}
+            onChange={handleRangeChange}
+          />
+        </React.Fragment>
+      )}
       {Properties.filters.bathrooms.length > 1 && (
         <React.Fragment>
           <p className={cx(styles.label, styles.noMargin)}>Bathrooms:</p>
@@ -91,16 +96,21 @@ const Filters: React.FC<IFiltersProps> = (props) => {
           </div>
         </React.Fragment>
       )}
-      <p className={styles.label}>Area:</p>
-      <InputRange
-        draggableTrack
-        minValue={Properties.filters.areaRange.min}
-        maxValue={Properties.filters.areaRange.max}
-        value={Properties.filters.area}
-        step={1}
-        formatLabel={formatArea}
-        onChange={handleAreaChange}
-      />
+      {Properties.filters.areaRange.min !==
+        Properties.filters.areaRange.max && (
+        <React.Fragment>
+          <p className={styles.label}>Area:</p>
+          <InputRange
+            draggableTrack
+            minValue={Properties.filters.areaRange.min}
+            maxValue={Properties.filters.areaRange.max}
+            value={Properties.filters.area}
+            step={1}
+            formatLabel={formatArea}
+            onChange={handleAreaChange}
+          />
+        </React.Fragment>
+      )}
       <label className={styles.parking}>
         <Toggle
           defaultChecked={Properties.filters.parking}

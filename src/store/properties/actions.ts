@@ -142,12 +142,22 @@ export const fetchResults = (
     const filters: IFilters = {
       budget: { min: minPrice, max: maxPrice },
       pricesRange: { min: minPrice, max: maxPrice },
-      bathrooms: bathrooms.filter(onlyUnique).map((item) => {
-        return { amount: item, selected: true };
-      }),
-      rooms: rooms.filter(onlyUnique).map((item) => {
-        return { amount: item, selected: true };
-      }),
+      bathrooms: bathrooms
+        .filter(onlyUnique)
+        .map((item) => {
+          return { amount: item, selected: true };
+        })
+        .sort(function (a, b) {
+          return a.amount - b.amount;
+        }),
+      rooms: rooms
+        .filter(onlyUnique)
+        .map((item) => {
+          return { amount: item, selected: true };
+        })
+        .sort(function (a, b) {
+          return a.amount - b.amount;
+        }),
       area: { min: minArea, max: maxArea },
       areaRange: { min: minArea, max: maxArea },
       parking: true,

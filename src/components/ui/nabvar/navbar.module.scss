@@ -9,13 +9,36 @@
   left: 0;
   background-color: $primary;
   overflow-x: hidden;
-  //   -webkit-box-shadow: 0 8px 6px -6px $box_shadow;
-  //   -moz-box-shadow: 0 8px 6px -6px $box_shadow;
-  //   box-shadow: 0 8px 6px -6px $box_shadow;
+  -webkit-box-shadow: 0 8px 6px -6px $box_shadow;
+  -moz-box-shadow: 0 8px 6px -6px $box_shadow;
+  box-shadow: 0 8px 6px -6px $box_shadow;
 
   .content {
     width: 100%;
     max-width: 1180px;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+    .back {
+      margin-right: 14px;
+      margin-top: 6px;
+
+      svg {
+        path {
+          fill: $orange;
+        }
+      }
+
+      &:hover {
+        cursor: pointer;
+
+        svg {
+          path {
+            fill: $white;
+          }
+        }
+      }
+    }
   }
 }

@@ -1,17 +1,14 @@
 import React, { PureComponent } from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 import styles from "./search.module.scss";
-import cx from "classnames";
 import Filters from "./filters";
 import { Map, Marker, Popup, TileLayer } from "react-leaflet";
 import Dropdown, { IDropdownOption } from "components/ui/dropdown";
 import { IPropertiesState } from "store/properties/reducer";
 import Result from "components/ui/result";
-import markerIcon from "leaflet/dist/images/marker-icon.png";
-import markerIconShadow from "leaflet/dist/images/marker-shadow.png";
-import L from "leaflet";
+import { myIcon } from "utils/map";
 import filter from "images/filter.svg";
-import search from "images/search.svg";
+import searchIcon from "images/search.svg";
 import "leaflet/dist/leaflet.css";
 
 interface ISearchProps extends RouteComponentProps {
@@ -61,7 +58,7 @@ class Search extends PureComponent<ISearchProps, ISearchState> {
   private HandleSearchClick = () => {
     const { city, operation, type } = this.state;
 
-    this.props.history.push(
+    this.props.history.replace(
       `/search?city=${city.value}&type=${type.value}&operation=${operation.value}`
     );
   };
@@ -180,15 +177,22 @@ class Search extends PureComponent<ISearchProps, ISearchState> {
       return { value: city.value, label: city.label };
     });
 
-    const myIcon = L.icon({
-      iconUrl: markerIcon,
-      iconSize: [24, 32],
-      iconAnchor: [16, 16],
-      popupAnchor: [0, 0],
-      shadowUrl: markerIconShadow,
-      shadowSize: [16, 16],
-      shadowAnchor: [16, 16],
+    const query = this.props.location.search.substr(1).split("&");
+    let search: any = {};
+    query.forEach((item) => {
+      const data = item.split("=");
+      search[data[0]] = data[1];
     });
+
+    const citySearch = this.props.Properties.cities.filter(
+      (city) => city.value === search.city
+    )[0].label;
+    const typeSearch = this.props.Properties.types.filter(
+      (type) => type.value === search.type
+    )[0].label;
+    const operationSearch = this.props.Properties.operations.filter(
+      (op) => op.value === search.operation
+    )[0].value;
 
     return (
       <div className={styles.container}>
@@ -205,7 +209,7 @@ class Search extends PureComponent<ISearchProps, ISearchState> {
               className={styles.filterButton}
               onClick={this.handleSearchClick}
             >
-              <img className={styles.image} src={search} alt="search" />
+              <img className={styles.image} src={searchIcon} alt="search" />
               <p className={styles.text}>Search</p>
             </div>
           </div>
@@ -333,9 +337,9 @@ class Search extends PureComponent<ISearchProps, ISearchState> {
                   <Result
                     key={`R${idx}`}
                     property={item}
-                    city={city.label}
-                    type={type.label}
-                    operation={operation.value}
+                    city={citySearch}
+                    type={typeSearch}
+                    operation={operationSearch}
                   />
                 );
               })}

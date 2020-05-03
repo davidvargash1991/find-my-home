@@ -1,0 +1,285 @@
+@import "../../../styles/styleguide.scss";
+
+@keyframes notificationIn {
+  0% {
+    top: -100px;
+  }
+  10% {
+    top: 25px;
+  }
+  15% {
+    top: 15px;
+  }
+  20% {
+    top: 20px;
+  }
+  60% {
+    top: 20px;
+  }
+  70% {
+    top: 20px;
+  }
+  80% {
+    top: 20px;
+  }
+  90% {
+    top: 20px;
+  }
+  100% {
+    top: -100px;
+  }
+}
+
+@keyframes notificationInMobile {
+  0% {
+    top: -300px;
+  }
+  10% {
+    top: 45px;
+  }
+  15% {
+    top: 35px;
+  }
+  20% {
+    top: 40px;
+  }
+  60% {
+    top: 40px;
+  }
+  70% {
+    top: 40px;
+  }
+  80% {
+    top: 40px;
+  }
+  90% {
+    top: 40px;
+  }
+  100% {
+    top: -300px;
+  }
+}
+
+:global {
+  .awssld__bullets button {
+    background: $orange !important;
+  }
+  .awssld__controls__arrow-left::before,
+  .awssld__controls__arrow-left::after,
+  .awssld__controls__arrow-right::before,
+  .awssld__controls__arrow-right::after {
+    background: $orange !important;
+  }
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  background-color: $gray-background;
+
+  .success {
+    background-color: rgba(0, 255, 127, 0.8);
+    font-weight: 300;
+    margin: 0 auto;
+    color: #006400;
+    width: auto;
+    height: auto;
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 10;
+    left: 50%;
+    top: -100px;
+    font-size: 1.5rem;
+    animation: notificationIn 3s forwards;
+    -webkit-animation: notificationIn 3s forwards;
+  }
+
+  .content {
+    height: 100%;
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    position: relative;
+    padding-top: 50px;
+    box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.14);
+    background-color: $white;
+
+    .carousel {
+      height: 60vh;
+
+      div:first-child {
+        height: 100%;
+      }
+
+      img {
+        height: 60vh;
+        object-fit: fill;
+      }
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 70% 30%;
+      padding-top: 20px;
+      padding-left: 15px;
+      column-gap: 20px;
+      width: 100%;
+
+      .title {
+        font-size: 3.2rem;
+        text-align: left;
+      }
+
+      .text {
+        font-size: 2rem;
+        line-height: 1.4;
+        color: black;
+        margin-top: 15px;
+        font-weight: 300;
+      }
+
+      .data {
+        width: 100%;
+        background-color: $orange;
+        color: $white;
+        margin-top: 20px 0;
+        display: grid;
+
+        .item {
+          border-right: 1px solid $white;
+          padding: 5px;
+
+          .trait {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin: 5px;
+          }
+        }
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        column-gap: 20px;
+        margin-top: 25px;
+        row-gap: 20px;
+
+        .item {
+          display: flex;
+          align-items: center;
+
+          .text {
+            margin: 0 5px;
+            font-size: 1.3rem;
+          }
+        }
+      }
+
+      .subtitle {
+        font-size: 2.8rem;
+        text-align: left;
+      }
+
+      .map {
+        width: 100%;
+        height: 300px;
+        z-index: 0;
+        margin-bottom: 70px;
+      }
+    }
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+}
+
+.copy {
+  margin-left: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.button {
+  font-size: 1.5rem;
+  color: $white;
+  background-color: $orange;
+  border-radius: 5px;
+  padding: 3px 5px;
+  border: none;
+  outline: none;
+  font-weight: 300;
+  border: 1px $orange solid;
+
+  &:hover {
+    cursor: pointer;
+    color: $orange;
+    background-color: $white;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .container {
+    .success {
+      left: 25%;
+      animation: notificationInMobile 3s forwards;
+      -webkit-animation: notificationInMobile 3s forwards;
+    }
+    .content {
+      .grid {
+        display: block;
+        padding-right: 15px;
+
+        .contact {
+          position: fixed;
+          top: 40px;
+          padding: 0 10px;
+          left: 0;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          background: $white;
+
+          h1 {
+            display: none;
+          }
+        }
+
+        .title {
+          font-size: 2.8rem;
+          text-align: left;
+        }
+
+        .text {
+          font-size: 1.5rem;
+          line-height: 1.2;
+        }
+
+        .data {
+          display: block;
+          width: 100%;
+
+          .item {
+            border-bottom: 1px solid $white;
+            display: flex;
+            justify-content: center;
+          }
+        }
+
+        .features {
+          grid-template-columns: repeat(auto-fill, 106px);
+        }
+
+        .map {
+          height: 300px;
+          z-index: 0;
+          margin-bottom: 70px;
+        }
+      }
+    }
+  }
+}

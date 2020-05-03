@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./result.module.scss";
+import { Link } from "react-router-dom";
 import { IProperty } from "data";
 import Title from "../title";
 
@@ -13,7 +14,7 @@ interface IResultProps {
 const Result: React.FC<IResultProps> = (props) => {
   const { property } = props;
   return (
-    <div className={styles.container}>
+    <Link to={`/detail/${property.id}`} className={styles.container}>
       <div className={styles.imgContainer}>
         <div className={styles.item}>
           <img src={property.images[0]} alt="real estate property" />
@@ -39,7 +40,7 @@ const Result: React.FC<IResultProps> = (props) => {
           <p className={styles.value}>{property.area}</p>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

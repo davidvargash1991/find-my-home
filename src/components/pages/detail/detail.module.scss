@@ -139,21 +139,27 @@
         font-weight: 300;
       }
 
-      .data {
+      .dataContainer {
         width: 100%;
-        background-color: $orange;
-        color: $white;
-        margin-top: 20px 0;
-        display: grid;
+        display: flex;
+        justify-content: center;
 
-        .item {
-          border-right: 1px solid $white;
-          padding: 5px;
+        .data {
+          width: auto;
+          background-color: $orange;
+          color: $white;
+          margin-top: 20px 0;
+          display: flex;
 
-          .trait {
-            font-size: 1.8rem;
-            font-weight: 300;
-            margin: 5px;
+          .item {
+            border-right: 1px solid $white;
+            padding: 5px;
+
+            .trait {
+              font-size: 1.8rem;
+              font-weight: 300;
+              margin: 5px;
+            }
           }
         }
       }
@@ -259,14 +265,16 @@
           line-height: 1.2;
         }
 
-        .data {
-          display: block;
-          width: 100%;
+        .dataContainer {
+          .data {
+            display: block;
+            width: 100%;
 
-          .item {
-            border-bottom: 1px solid $white;
-            display: flex;
-            justify-content: center;
+            .item {
+              border-bottom: 1px solid $white;
+              display: flex;
+              justify-content: center;
+            }
           }
         }
 

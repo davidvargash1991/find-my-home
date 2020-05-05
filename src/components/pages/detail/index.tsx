@@ -36,22 +36,6 @@ const Detail: React.FC<IDetailProps> = ({ id }) => {
   )[0];
 
   const position = { lat: property.lat, lng: property.lng };
-
-  let gridCols = `repeat(4,1fr)`;
-  if (property.buyPrice > 0) {
-    gridCols = "2fr " + gridCols;
-  }
-  if (property.rentPrice > 0) {
-    gridCols = "2fr " + gridCols;
-  }
-  if (property.adminFee > 0) {
-    gridCols = "2fr " + gridCols;
-  }
-
-  const dataStyle: React.CSSProperties = {
-    gridTemplateColumns: gridCols,
-  };
-
   if (!scrolled) {
     setTimeout(() => {
       window.scrollTo(0, 0);
@@ -79,42 +63,44 @@ const Detail: React.FC<IDetailProps> = ({ id }) => {
               }`}
             />
             <p className={styles.text}>{property.description}</p>
-            <div className={styles.data} style={dataStyle}>
-              {property.buyPrice > 0 && (
+            <div className={styles.dataContainer}>
+              <div className={styles.data}>
+                {property.buyPrice > 0 && (
+                  <div className={styles.item}>
+                    <h2 className={styles.trait}>Sell Price:</h2>
+                    <p className={styles.trait}>{`$${property.buyPrice}`}</p>
+                  </div>
+                )}
+                {property.rentPrice > 0 && (
+                  <div className={styles.item}>
+                    <h2 className={styles.trait}>Rent Price:</h2>
+                    <p className={styles.trait}>{`$${property.rentPrice}`}</p>
+                  </div>
+                )}
+                {property.adminFee > 0 && (
+                  <div className={styles.item}>
+                    <h2 className={styles.trait}>Admin Fee:</h2>
+                    <p className={styles.trait}>{`$${property.adminFee}`}</p>
+                  </div>
+                )}
                 <div className={styles.item}>
-                  <h2 className={styles.trait}>Sell Price:</h2>
-                  <p className={styles.trait}>{`$${property.buyPrice}`}</p>
+                  <h2 className={styles.trait}>Area:</h2>
+                  <p className={styles.trait}>{`${property.area} m2`}</p>
                 </div>
-              )}
-              {property.rentPrice > 0 && (
                 <div className={styles.item}>
-                  <h2 className={styles.trait}>Rent Price:</h2>
-                  <p className={styles.trait}>{`$${property.rentPrice}`}</p>
+                  <h2 className={styles.trait}>Rooms:</h2>
+                  <p className={styles.trait}>{`${property.rooms}`}</p>
                 </div>
-              )}
-              {property.adminFee > 0 && (
                 <div className={styles.item}>
-                  <h2 className={styles.trait}>Admin Fee:</h2>
-                  <p className={styles.trait}>{`$${property.adminFee}`}</p>
+                  <h2 className={styles.trait}>Bathrooms:</h2>
+                  <p className={styles.trait}>{`${property.bathrooms}`}</p>
                 </div>
-              )}
-              <div className={styles.item}>
-                <h2 className={styles.trait}>Area:</h2>
-                <p className={styles.trait}>{`${property.area} m2`}</p>
-              </div>
-              <div className={styles.item}>
-                <h2 className={styles.trait}>Rooms:</h2>
-                <p className={styles.trait}>{`${property.rooms}`}</p>
-              </div>
-              <div className={styles.item}>
-                <h2 className={styles.trait}>Bathrooms:</h2>
-                <p className={styles.trait}>{`${property.bathrooms}`}</p>
-              </div>
-              <div className={styles.item}>
-                <h2 className={styles.trait}>Parking:</h2>
-                <p className={styles.trait}>{`${
-                  property.parking ? "Yes" : "No"
-                }`}</p>
+                <div className={styles.item}>
+                  <h2 className={styles.trait}>Parking:</h2>
+                  <p className={styles.trait}>{`${
+                    property.parking ? "Yes" : "No"
+                  }`}</p>
+                </div>
               </div>
             </div>
             <Title className={styles.subtitle} text={"Features"} />
